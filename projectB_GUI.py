@@ -1,3 +1,9 @@
+### Group Members:
+# 1211104379 Melvin Kwan Yii Syn
+# 1211103616 Goh Yee Xhuan
+# 1211102302 Soong Hoe Mun
+# 1211102914 Wang Yi Hong
+
 import math
 import tkinter as tk
 from tkinter import ttk, scrolledtext
@@ -110,65 +116,54 @@ class HuffmanGUI:
         self.root.geometry("800x600")
         self.encoder = HuffmanEncoder()
         
-        # Create and configure grid
         self.root.grid_columnconfigure(0, weight=1)
         self.root.grid_rowconfigure(3, weight=1)
         
-        # Create widgets
         self.create_widgets()
         
     def create_widgets(self):
-        # Input Frame
+    
         input_frame = ttk.LabelFrame(self.root, text="Input", padding="10")
         input_frame.grid(row=0, column=0, padx=10, pady=5, sticky="ew")
         
-        # Text Input
         self.text_label = ttk.Label(input_frame, text="Enter text to encode:")
         self.text_label.grid(row=0, column=0, padx=5, pady=5)
         
         self.text_input = ttk.Entry(input_frame, width=50)
         self.text_input.grid(row=0, column=1, padx=5, pady=5)
         
-        # Encode Button
         self.encode_button = ttk.Button(input_frame, text="Encode", command=self.encode_text)
         self.encode_button.grid(row=0, column=2, padx=5, pady=5)
         
-        # Results Frame
         results_frame = ttk.LabelFrame(self.root, text="Results", padding="10")
         results_frame.grid(row=1, column=0, padx=10, pady=5, sticky="ew")
         
-        # Encoded Text
         self.encoded_label = ttk.Label(results_frame, text="Encoded text:")
         self.encoded_label.grid(row=0, column=0, padx=5, pady=5)
         
         self.encoded_text = scrolledtext.ScrolledText(results_frame, height=3, width=70, wrap=tk.WORD)
         self.encoded_text.grid(row=1, column=0, columnspan=2, padx=5, pady=5)
         
-        # Huffman Codes Frame
         codes_frame = ttk.LabelFrame(self.root, text="Huffman Codes", padding="10")
         codes_frame.grid(row=2, column=0, padx=10, pady=5, sticky="ew")
         
-        # Codes Display
         self.codes_display = scrolledtext.ScrolledText(codes_frame, height=10, width=70, wrap=tk.WORD)
         self.codes_display.grid(row=0, column=0, padx=5, pady=5)
         
-        # Statistics Frame
         stats_frame = ttk.LabelFrame(self.root, text="Statistics", padding="10")
         stats_frame.grid(row=3, column=0, padx=10, pady=5, sticky="ew")
         
-        # Statistics Display
         self.stats_display = scrolledtext.ScrolledText(stats_frame, height=5, width=70, wrap=tk.WORD)
         self.stats_display.grid(row=0, column=0, padx=5, pady=5)
         
     def encode_text(self):
-        # Get input text
+    
         text = self.text_input.get().upper()
         
         if not text:
             self.show_error("Please enter some text to encode.")
             return
             
-        # Encode the text
         try:
             encoded_text = self.encoder.encode_text(text)
             codes = self.encoder.get_codes()
